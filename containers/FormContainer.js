@@ -8,6 +8,8 @@ YupPassword(yup);
 import { FormInputText } from "../components/Inputs/FormInputsText";
 import { InputButton } from "../components/utils/button/button.styles";
 import { FormInputDropdown } from "../components/Inputs/FormInputDropdown";
+import { FormInputDate } from "../components/Inputs/FormInputDate";
+import { FormInputMultiCheckbox } from "../components/Inputs/FormInputMultiCheckbox";
 import EmailIcon from "@mui/icons-material/Email";
 import KeyIcon from "@mui/icons-material/Key";
 import {
@@ -36,6 +38,7 @@ const defaultValues = {
 	dropdown: "",
 	radio: "",
 	slider: 20,
+	date: "",
 };
 const phoneRegExp =
 	/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -84,6 +87,7 @@ const FormSchema = yup.object().shape({
 		.number()
 		.min(11, "Value Should be atleast 11")
 		.required("Slider value should be min 11"),
+	date: yup.string().required("Date Filed Cannot be empty"),
 });
 const FormContainer = () => {
 	const { data: usersData } = getUsersData();
@@ -133,12 +137,12 @@ const FormContainer = () => {
 			/>
 			<br />
 			<br />
-			{/* <FormGroupLabel>
-				<FormInputLabel control={<InputCheckBox />} label="Delhi" />
-				<FormInputLabel control={<InputCheckBox />} label="Bangalore" />
-				<FormInputLabel control={<InputCheckBox />} label="Gurugam" />
-				<FormInputLabel control={<InputCheckBox />} label="Noida" />
-			</FormGroupLabel> */}
+			{/* <FormInputMultiCheckbox
+				control={control}
+				name="checkbox"
+				placeholder="CheckBox"
+				label="Checkbox"
+			/> */}
 			<br />
 
 			<FormInputRadio
@@ -154,7 +158,12 @@ const FormContainer = () => {
 			/>
 			<br />
 			<br />
-			{/* <DOB /> */}
+			<FormInputDate
+				control={control}
+				name="date"
+				label="Date"
+				placeholder="Date"
+			/>
 			<br />
 			<br />
 			{/* <DateTime /> */}
